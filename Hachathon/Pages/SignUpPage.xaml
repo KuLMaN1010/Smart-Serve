@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hachathon.Pages.SignUpPage"
+             Title="SignUpPage"
+             BackgroundColor="#EDEDED">
+    <StackLayout Padding="40,60,40,0" Spacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+
+        <!-- Page Title -->
+        <Label Text="Create Account"
+               FontSize="36"
+               FontAttributes="Bold"
+               TextColor="#444"
+               HorizontalOptions="Center" />
+
+        <!-- Subtitle -->
+        <Label Text="Join us to get started!"
+               FontSize="16"
+               TextColor="#666"
+               HorizontalOptions="Center" />
+
+        <!-- Username Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
+            <Entry x:Name="usernameEntry"
+                   Placeholder="Username"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="5,0"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Email Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
+            <Entry x:Name="emailEntry"
+                   Placeholder="Email"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Keyboard="Email"
+                   Margin="5,0"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Password Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
+            <Entry x:Name="passwordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="5,0"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Confirm Password Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
+            <Entry x:Name="confirmPasswordEntry"
+                   Placeholder="Confirm Password"
+                   IsPassword="True"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="5,0"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+        <!-- Sign Up Button -->
+        <Button Text="Sign Up"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#4A90E2"  
+                CornerRadius="10"
+                HeightRequest="50"
+                WidthRequest="300"
+                Clicked="OnSignUpClicked"
+                HorizontalOptions="Center" />
+
+            <!-- Additional Spacing and Sign-In Option -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0">
+                <Label Text="Already have an account?"
+                   FontSize="14"
+                   TextColor="#888" />
+                <Button Text="Log in"
+                    FontSize="14"
+                    TextColor="#4A90E2"
+                    BackgroundColor="Transparent"
+                    HorizontalOptions="Center"
+                    Padding="0"
+                    Margin="5,0,0,0"
+                    Clicked="OnLoginClicked"/>
+                <!-- Add an event if you want to navigate to the login page -->
+            </StackLayout>
+    </StackLayout>
+</ContentPage>

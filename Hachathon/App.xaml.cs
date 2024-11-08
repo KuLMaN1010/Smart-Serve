@@ -1,4 +1,7 @@
-﻿namespace Hachathon
+﻿using Microsoft.Maui.Controls;
+using Hachathon.Pages;
+
+namespace Hachathon
 {
     public partial class App : Application
     {
@@ -9,7 +12,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            // Set LoginPage as the initial page
+            return new Window(new NavigationPage(new SignUpPage()));
         }
     }
 }
