@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hachathon.Pages.LoginPage"
+             Title="LoginPage"
+             BackgroundColor="#f5f5f5">
+
+    <StackLayout Padding="40,100,40,0" Spacing="20" VerticalOptions="CenterAndExpand">
+        <!-- Page Title -->
+        <Label Text="Welcome Back"
+               FontSize="36"
+               FontAttributes="Bold"
+               TextColor="#333"
+               HorizontalOptions="Center" />
+        
+        <!-- Subtitle -->
+        <Label Text="Sign in to continue"
+               FontSize="16"
+               TextColor="#666"
+               HorizontalOptions="Center" />
+
+        <!-- Username Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="False" BackgroundColor="White">
+            <Entry x:Name="usernameEntry"
+                   Placeholder="Username"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="10,5"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Password Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="False" BackgroundColor="White">
+            <Entry x:Name="passwordEntry"
+                   Placeholder="Password"
+                   IsPassword="True"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="10,5"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Login Button -->
+        <Button Text="Login"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#4A90E2"
+                CornerRadius="10"
+                HeightRequest="50"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Center" />
+
+        <!-- Additional Spacing -->
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Label Text="Don't have an account?"
+                   FontSize="14"
+                   TextColor="#666" />
+           
+        </StackLayout>
+        <Button Text="Sign up"
+                FontSize="15"
+                TextColor="#4A90E2"
+                BackgroundColor="Transparent"
+                HorizontalOptions="Center"
+                Clicked="OnSignUpClicked"/>
+    </StackLayout>
+</ContentPage>
+    
