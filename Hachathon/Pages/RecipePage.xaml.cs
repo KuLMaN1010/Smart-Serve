@@ -14,48 +14,6 @@ public partial class RecipePage : ContentPage
 	{
 		InitializeComponent();
 	}
-    private async Task<string> GetRecipeFromAI(string prompt)
-    {
-        using (var client = new HttpClient())
-        {
-            // Set the API key for authorization
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-
-            // Define the request body
-            var requestBody = new
-            {
-                model = "text-davinci-003", // OpenAI's text generation model
-                prompt = prompt,
-                max_tokens = 150, // Limits the response length
-                temperature = 0.7 // Adjusts randomness
-            };
-
-            // Send the request
-            var response = await client.PostAsJsonAsync(apiUrl, requestBody);
-
-            // Check if the request was successful
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadFromJsonAsync<OpenAIResponse>();
-                return result?.choices[0].text.Trim() ?? "No recipe found.";
-            }
-            else
-            {
-                throw new Exception("Error from OpenAI API");
-            }
-        }
-    }
-
-    // Define a helper class for the OpenAI API response
-    public class OpenAIResponse
-    {
-        public Choice[] choices { get; set; }
-    }
-
-    public class Choice
-    {
-        public string text { get; set; }
-    }
     private async void OnGenerateRecipeClicked(object sender, EventArgs e)
     {
         string ingredients = ingredientsEntry.Text;
@@ -76,8 +34,10 @@ public partial class RecipePage : ContentPage
         {
             // Create the prompt using the user's input
             string prompt = $"Create a recipe using these ingredients: {ingredients}.";
+
             // Call the method to get a recipe from OpenAI
             string response = await GetRecipeFromAI(prompt);
+
             // Display the response (generated recipe)
             recipeOutput.Text = response;
         }
@@ -88,5 +48,57 @@ public partial class RecipePage : ContentPage
             recipeOutput.Text = string.Empty; // Clear the output if there’s an error
             Console.WriteLine($"Error: {ex.Message}"); // Print the error for debugging
         }
+    }
+
+    private async Task<string> GetRecipeFromAI(string prompt)
+    {
+        using (var client = new HttpClient())
+        {
+            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
+            var requestBody = new
+            {
+                model = "text-davinci-003",
+                prompt = prompt,
+                max_tokens = 150,
+                temperature = 0.7
+            };
+
+            try
+            {
+                var response = await client.PostAsJsonAsync(apiUrl, requestBody);
+
+                // Log the status code and full response content
+                Console.WriteLine($"Status Code: {response.StatusCode}");
+                string responseContent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"Response Content: {responseContent}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadFromJsonAsync<OpenAIResponse>();
+                    return result?.choices[0].text.Trim() ?? "No recipe found.";
+                }
+                else
+                {
+                    throw new Exception($"OpenAI API Error: {responseContent}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.Message}");
+                throw new Exception("Failed to communicate with OpenAI API", ex);
+            }
+        }
+    }
+
+    // Define a helper class for the OpenAI API response
+    public class OpenAIResponse
+    {
+        public Choice[] choices { get; set; }
+    }
+
+    public class Choice
+    {
+        public string text { get; set; }
     }
 }
