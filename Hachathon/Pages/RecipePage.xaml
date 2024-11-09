@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Hachathon.Pages.RecipePage"
+             Title="RecipePage"
+             BackgroundColor="#EDEDED">
+
+    <StackLayout Padding="40,60,40,20" Spacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+
+        <!-- Page Title -->
+        <Label Text="Recipe Generator"
+               FontSize="36"
+               FontAttributes="Bold"
+               TextColor="#444"
+               HorizontalOptions="Center" />
+
+        <!-- Instructions -->
+        <Label Text="Enter the ingredients you have, separated by commas:"
+               FontSize="16"
+               TextColor="#666"
+               HorizontalOptions="Center" />
+
+        <!-- Ingredients Entry -->
+        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
+            <Entry x:Name="ingredientsEntry"
+                   Placeholder="e.g., onion, egg, salt"
+                   FontSize="18"
+                   TextColor="#333"
+                   PlaceholderColor="#888"
+                   Margin="5,0"
+                   HorizontalOptions="FillAndExpand"/>
+        </Frame>
+
+        <!-- Generate Recipe Button -->
+        <Button Text="Generate Recipe"
+                FontSize="18"
+                TextColor="White"
+                BackgroundColor="#4A90E2"
+                CornerRadius="10"
+                HeightRequest="50"
+                WidthRequest="300"
+                Clicked="OnGenerateRecipeClicked"
+                HorizontalOptions="Center" />
+
+        <!-- Recipe Output -->
+        <Label x:Name="recipeOutput"
+               FontSize="16"
+               TextColor="#333"
+               Padding="10"
+               BackgroundColor="White"
+               IsVisible="False"
+               WidthRequest="300"
+               VerticalOptions="StartAndExpand"
+               HorizontalOptions="Center"/>
+    </StackLayout>
+</ContentPage>
