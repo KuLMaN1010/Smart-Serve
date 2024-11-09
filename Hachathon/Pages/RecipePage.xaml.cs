@@ -1,104 +1,120 @@
 using System;
 using System.Net.Http;
-using System.Net.Http.Json;
+using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
 
-namespace Hachathon.Pages;
-public partial class RecipePage : ContentPage
+namespace Hachathon.Pages
 {
-    private const string apiKey = "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"; // Replace with your actual API key
-    private const string apiUrl = "https://api.openai.com/v1/completions";
-
-    public RecipePage()
-	{
-		InitializeComponent();
-	}
-    private async void OnGenerateRecipeClicked(object sender, EventArgs e)
+    public partial class RecipePage : ContentPage
     {
-        string ingredients = ingredientsEntry.Text;
+        // Use your new API key here
+        private const string apiKey = "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";
+        private const string apiUrl = "https://api.openai.com/v1/chat/completions";
 
-        // Check if the ingredients entry field is empty
-        if (string.IsNullOrWhiteSpace(ingredients))
+        public RecipePage()
         {
-            // Display an alert if no ingredients are entered
-            await DisplayAlert("Error", "Please enter some ingredients.", "OK");
-            return;
+            InitializeComponent();
         }
 
-        // Show a loading message while waiting for the API response
-        recipeOutput.Text = "Generating recipe...";
-        recipeOutput.IsVisible = true;
-
-        try
+        private async void OnGenerateRecipeClicked(object sender, EventArgs e)
         {
-            // Create the prompt using the user's input
-            string prompt = $"Create a recipe using these ingredients: {ingredients}.";
+            string ingredients = ingredientsEntry.Text;
 
-            // Call the method to get a recipe from OpenAI
-            string response = await GetRecipeFromAI(prompt);
-
-            // Display the response (generated recipe)
-            recipeOutput.Text = response;
-        }
-        catch (Exception ex)
-        {
-            // Display an error message if the request fails
-            await DisplayAlert("Error", "Failed to generate recipe. Please try again.", "OK");
-            recipeOutput.Text = string.Empty; // Clear the output if there’s an error
-            Console.WriteLine($"Error: {ex.Message}"); // Print the error for debugging
-        }
-    }
-
-    private async Task<string> GetRecipeFromAI(string prompt)
-    {
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-
-            var requestBody = new
+            if (string.IsNullOrWhiteSpace(ingredients))
             {
-                model = "text-davinci-003",
-                prompt = prompt,
-                max_tokens = 150,
-                temperature = 0.7
-            };
+                await DisplayAlert("Error", "Please enter some ingredients.", "OK");
+                return;
+            }
+
+            recipeOutput.Text = "Generating recipe...";
+            recipeOutput.IsVisible = true;
 
             try
             {
-                var response = await client.PostAsJsonAsync(apiUrl, requestBody);
-
-                // Log the status code and full response content
-                Console.WriteLine($"Status Code: {response.StatusCode}");
-                string responseContent = await response.Content.ReadAsStringAsync();
-                Console.WriteLine($"Response Content: {responseContent}");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = await response.Content.ReadFromJsonAsync<OpenAIResponse>();
-                    return result?.choices[0].text.Trim() ?? "No recipe found.";
-                }
-                else
-                {
-                    throw new Exception($"OpenAI API Error: {responseContent}");
-                }
+                string response = await GetRecipeFromAI(ingredients);
+                recipeOutput.Text = response;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex.Message}");
-                throw new Exception("Failed to communicate with OpenAI API", ex);
+                await DisplayAlert("Error", "Failed to generate recipe. Please try again.", "OK");
+                recipeOutput.Text = string.Empty;
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
             }
         }
-    }
 
-    // Define a helper class for the OpenAI API response
-    public class OpenAIResponse
-    {
-        public Choice[] choices { get; set; }
-    }
+        private async Task<string> GetRecipeFromAI(string ingredients)
+        {
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 
-    public class Choice
-    {
-        public string text { get; set; }
+                var requestBody = new
+                {
+                    model = "gpt-3.5-turbo",
+                    messages = new[]
+                    {
+                        new { role = "user", content = $"Create a recipe using these ingredients: {ingredients}." }
+                    },
+                    max_tokens = 150,
+                    temperature = 0.7
+                };
+
+                var jsonContent = new StringContent(
+                    JsonSerializer.Serialize(requestBody),
+                    Encoding.UTF8,
+                    "application/json"
+                );
+
+                try
+                {
+                    Console.WriteLine("Sending request to OpenAI API...");
+                    var response = await client.PostAsync(apiUrl, jsonContent);
+
+                    Console.WriteLine($"Status Code: {response.StatusCode}");
+                    string responseContent = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Response Content: {responseContent}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = JsonSerializer.Deserialize<OpenAIResponse>(responseContent);
+                        return result?.choices?[0]?.message?.content.Trim() ?? "No recipe found.";
+                    }
+                    else
+                    {
+                        throw new Exception($"OpenAI API Error: StatusCode={response.StatusCode}, Content={responseContent}");
+                    }
+                }
+                catch (HttpRequestException httpEx)
+                {
+                    Console.WriteLine($"HTTP Request Exception: {httpEx.Message}");
+                    throw new Exception("Network or connectivity issue while communicating with OpenAI API.", httpEx);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"General Exception: {ex.Message}");
+                    throw new Exception("Failed to communicate with OpenAI API.", ex);
+                }
+            }
+        }
+
+        // Define helper classes for the OpenAI API response
+        public class OpenAIResponse
+        {
+            public Choice[] choices { get; set; }
+        }
+
+        public class Choice
+        {
+            public Message message { get; set; }
+        }
+
+        public class Message
+        {
+            public string role { get; set; }
+            public string content { get; set; }
+        }
     }
 }
