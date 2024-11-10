@@ -2,70 +2,61 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hachathon.Pages.HomePage"
-             Title="SmartServe"
+
              BackgroundColor="White">
 
-    <StackLayout Padding="20" Spacing="10">
+    <StackLayout Padding="20">
+        <!-- Header Image for the Title Bar -->
+        <Image Source="header_image.png" HorizontalOptions="Center" />
 
-        <!-- Header Section -->
-        <Grid BackgroundColor="#F5A623" Padding="15">
+        <!-- Main Title -->
+        <Label Text="Generate a healthy lifestyle..."
+               FontSize="24"
+               FontAttributes="Bold"
+               TextColor="Black"
+               HorizontalOptions="Center"
+               Margin="0, 20, 0, 20"/>
+
+        <!-- 1x4 Grid for Icons and Labels -->
+        <Grid ColumnSpacing="20" RowSpacing="10" HorizontalOptions="Center">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Label Text="Contact" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="18" Grid.Column="0" />
-            <Label Text="Preferences" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="18" Grid.Column="1" />
-            <Label Text="Account" HorizontalOptions="Center" VerticalOptions="Center" TextColor="White" FontSize="18" Grid.Column="2" />
+            <!-- Schedule Button -->
+            <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
+                <Image Source="schedule_icon.png" WidthRequest="350" HeightRequest="350"/>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnScheduleTapped"/>
+                </Image.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Recipe Generator Button -->
+            <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
+                <Image Source="recipe_icon.png" WidthRequest="350" HeightRequest="350"/>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnRecipeGeneratorTapped"/>
+                </Image.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Pantry Button -->
+            <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
+                <Image Source="pantry_icon.png" WidthRequest="350" HeightRequest="350"/>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnPantryTapped"/>
+                </Image.GestureRecognizers>
+            </VerticalStackLayout>
+
+            <!-- Nutritional Intake Button -->
+            <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
+                <Image Source="nutrition_icon.png" WidthRequest="350" HeightRequest="350"/>
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnNutritionalIntakeTapped"/>
+                </Image.GestureRecognizers>
+            </VerticalStackLayout>
         </Grid>
-
-        <!-- Main Content Section -->
-        <StackLayout Padding="0,30,0,0" Spacing="20" HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="Generate a healthy lifestyle..." FontSize="20" HorizontalOptions="Center" TextColor="Black" />
-
-            <Grid ColumnSpacing="20" RowSpacing="20">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <!-- Schedule Button -->
-                <Frame Grid.Row="0" Grid.Column="0" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="15" Padding="15">
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="schedule_icon.png" WidthRequest="60" HeightRequest="60" />
-                        <Label Text="Schedule" FontSize="16" TextColor="Black" HorizontalOptions="Center" />
-                    </StackLayout>
-                </Frame>
-
-                <!-- Recipe Generator Button -->
-                <Frame Grid.Row="0" Grid.Column="1" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="15" Padding="15">
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="recipe_icon.png" WidthRequest="60" HeightRequest="60" />
-                        <Label Text="Recipe Generator" FontSize="16" TextColor="Black" HorizontalOptions="Center" />
-                    </StackLayout>
-                </Frame>
-
-                <!-- Pantry Button -->
-                <Frame Grid.Row="1" Grid.Column="0" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="15" Padding="15">
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="pantry_icon.png" WidthRequest="60" HeightRequest="60" />
-                        <Label Text="Pantry" FontSize="16" TextColor="Black" HorizontalOptions="Center" />
-                    </StackLayout>
-                </Frame>
-
-                <!-- Nutritional Intake Button -->
-                <Frame Grid.Row="1" Grid.Column="1" BackgroundColor="White" BorderColor="#E0E0E0" CornerRadius="15" Padding="15">
-                    <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                        <Image Source="nutrition_icon.png" WidthRequest="60" HeightRequest="60" />
-                        <Label Text="Nutritional Intake" FontSize="16" TextColor="Black" HorizontalOptions="Center" />
-                    </StackLayout>
-                </Frame>
-            </Grid>
-        </StackLayout>
     </StackLayout>
 </ContentPage>

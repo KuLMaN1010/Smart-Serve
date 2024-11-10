@@ -60,6 +60,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\header_image.png" />
+	  <None Remove="Resources\Images\nutrition_icon.png" />
+	  <None Remove="Resources\Images\pantry_icon.png" />
+	  <None Remove="Resources\Images\recipe_icon.png" />
+	  <None Remove="Resources\Images\schedule_icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-rc.1.24431.7" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
@@ -72,7 +80,7 @@
 	  <MauiXaml Update="Pages\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\NutritionalIntake.xaml">
+	  <MauiXaml Update="Pages\NutritionalIntakePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\PantryPage.xaml">
@@ -81,7 +89,7 @@
 	  <MauiXaml Update="Pages\RecipePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Schedule.xaml">
+	  <MauiXaml Update="Pages\SchedulePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SignUpPage.xaml">
