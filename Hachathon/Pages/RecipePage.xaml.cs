@@ -10,7 +10,7 @@ namespace Hachathon.Pages
     public partial class RecipePage : ContentPage
     {
         // Use your new API key here
-        private const string apiKey = "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";
+        private const string apiKey = "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";
         private const string apiUrl = "https://api.openai.com/v1/chat/completions";
 
         public RecipePage()
