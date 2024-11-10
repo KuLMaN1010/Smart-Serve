@@ -60,7 +60,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\camera_icon.png" />
+	  <None Remove="Resources\Images\chef_sarah.png" />
+	  <None Remove="Resources\Images\header2_image.png" />
 	  <None Remove="Resources\Images\header_image.png" />
+	  <None Remove="Resources\Images\meat.png" />
+	  <None Remove="Resources\Images\milk.png" />
 	  <None Remove="Resources\Images\nutrition_icon.png" />
 	  <None Remove="Resources\Images\pantry_icon.png" />
 	  <None Remove="Resources\Images\recipe_icon.png" />
