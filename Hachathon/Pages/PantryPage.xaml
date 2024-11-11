@@ -25,8 +25,8 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="Perishables" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Grid.Column="0" />
-                            <Label Text="Quantity" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Grid.Column="1" HorizontalOptions="End" />
+                            <Label Text="Perishables" FontSize="Medium"  FontFamily="Consolas" TextColor="Black" Grid.Column="0" />
+                            <Label Text="Quantity" FontSize="Medium" TextColor="Black" FontFamily="Consolas" Grid.Column="1" HorizontalOptions="End" />
                         </Grid>
                     </Frame>
 
@@ -40,7 +40,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="milk.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                        <Label x:Name="MilkQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Label x:Name="MilkQuantityLabel" Text="2 Litre" FontSize="Medium"  FontFamily="Consolas" VerticalOptions="Center" Grid.Column="1" />
                         <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseMilkQuantity" Grid.Column="2" />
                         <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseMilkQuantity" Grid.Column="3" />
                     </Grid>
@@ -55,7 +55,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="meat.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                        <Label x:Name="MeatQuantityLabel" Text="5 lb" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Label x:Name="MeatQuantityLabel" Text="5 lb" FontSize="Medium" FontFamily="Consolas" VerticalOptions="Center" Grid.Column="1" />
                         <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseMeatQuantity" Grid.Column="2" />
                         <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseMeatQuantity" Grid.Column="3" />
                     </Grid>
@@ -69,7 +69,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="onions.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                        <Label x:Name="OnionsQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Label x:Name="OnionsQuantityLabel" Text="2 Litre" FontSize="Medium" FontFamily="Consolas" VerticalOptions="Center" Grid.Column="1" />
                         <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseOnionsQuantity" Grid.Column="2" />
                         <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseOnionsQuantity" Grid.Column="3" />
                     </Grid>
@@ -83,7 +83,7 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="tomato.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                        <Label x:Name="tomatoQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Label x:Name="tomatoQuantityLabel" Text="2 Litre" FontSize="Medium" FontFamily="Consolas" VerticalOptions="Center" Grid.Column="1" />
                         <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseTomatoQuantity" Grid.Column="2" />
                         <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseTomatoQuantity" Grid.Column="3" />
                     </Grid>
@@ -104,11 +104,11 @@
                     <Frame BorderColor="Gray" CornerRadius="20" Padding="10" WidthRequest="630" HeightRequest="150">
                         <StackLayout>
                             <!-- Title for the suggestion box -->
-                            <Label Text="Suggested Grocery List:" FontAttributes="Bold" FontSize="18" TextColor="#333333" />
+                            <Label Text="Suggested Grocery List:" FontAttributes="Bold" FontSize="18" TextColor="Grey" FontFamily="Consolas" />
 
                             <!-- List items as individual labels -->
-                            <Label Text="1) You’re running out of Milk!" FontSize="18" TextColor="#333333" />
-                            <Label Text="2) With this week's budget, you could get this..." FontSize="18" TextColor="#333333" />
+                            <Label Text="1) You’re running out of Milk!" FontSize="18" TextColor="#333333" FontFamily="Consolas"/>
+                            <Label Text="2) With this week's budget, you could get this..." FontSize="18" TextColor="#333333" FontFamily="Consolas" />
                         </StackLayout>
                     </Frame>
 
@@ -126,8 +126,8 @@
 
                                     <!-- Introduction Text with Padding to Avoid Overlap -->
                                     <StackLayout Grid.Column="0" Padding="0,0,50,0">
-                                        <Label Text="Chatbot - Talk to Chef Sarah!" FontSize="14" FontAttributes="Bold" TextColor="Gray" />
-                                        <Label Text="Ask questions about the pantry, add reminders about expiry dates, or schedule a shopping trip!" FontSize="14" TextColor="Gray" />
+                                        <Label Text="Chatbot - Talk to Chef Sarah!" FontFamily="Consolas" FontSize="14" FontAttributes="Bold" TextColor="Gray" />
+                                        <Label Text="Ask questions about the pantry, add reminders about expiry dates, or schedule a shopping trip!" FontFamily="Consolas" FontSize="14" TextColor="Gray" />
                                     </StackLayout>
 
                                     <!-- Chef Sarah Image -->
@@ -138,7 +138,7 @@
                                 <CollectionView x:Name="ChatMessages" HeightRequest="80" WidthRequest="630">
                                     <CollectionView.ItemTemplate>
                                         <DataTemplate>
-                                            <Label Text="{Binding}" FontSize="15" TextColor="Black" />
+                                            <Label Text="{Binding}" FontSize="15" FontFamily="Consolas" TextColor="Black" />
                                         </DataTemplate>
                                     </CollectionView.ItemTemplate>
                                 </CollectionView>
