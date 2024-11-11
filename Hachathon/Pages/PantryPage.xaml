@@ -4,75 +4,138 @@
              x:Class="Hachathon.Pages.PantryPage"
              BackgroundColor="White">
 
-    <StackLayout Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+    <ScrollView>
+        <StackLayout Padding="20">
 
-        <!-- Header Image -->
-        <Image Source="header2_image.png" Margin="0,0,0,20" HorizontalOptions="Center" />
+            <!-- Header Image for the Title Bar -->
+            <Image Source="header2_image.png" HorizontalOptions="Center" />
 
-        <!-- Main Grid Layout -->
-        <Grid ColumnSpacing="20" RowSpacing="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
+            <!-- Main Grid Layout for Pantry Page -->
+            <Grid ColumnSpacing="20" RowSpacing="20" Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Left Side: Pantry Items -->
-            <StackLayout Grid.Column="0" VerticalOptions="StartAndExpand">
-                <Label Text="Perishables" FontSize="18" FontAttributes="Bold" Margin="0,10,0,10"/>
+                <!-- Left Section for Pantry Items -->
+                <StackLayout Grid.Column="0" Padding="10">
+                    <Frame BorderColor="Gray" CornerRadius="30" Padding="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Perishables" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Grid.Column="0" />
+                            <Label Text="Quantity" FontSize="Medium" FontAttributes="Bold" TextColor="Black" Grid.Column="1" HorizontalOptions="End" />
+                        </Grid>
+                    </Frame>
 
-                <!-- Milk Item -->
-                <Grid ColumnSpacing="10" RowSpacing="10" HorizontalOptions="FillAndExpand">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="60" />
-                        <ColumnDefinition Width="40" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="milk.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                    <Label x:Name="MilkQuantityLabel" Text="2 Litre" VerticalOptions="Center" HorizontalOptions="Start" FontSize="20" Grid.Column="1"/>
-                    <Button Text="-" BackgroundColor="#800080" TextColor="White" WidthRequest="70" HeightRequest="70" Clicked="DecreaseMilkQuantity" Grid.Column="2"/>
-                    <Button Text="+" BackgroundColor="#800080" TextColor="White" WidthRequest="70" HeightRequest="70" Clicked="IncreaseMilkQuantity" Grid.Column="3"/>
-                </Grid>
+                    <!-- Milk Item with Quantity Label and Buttons -->
+                    <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <!-- Meat Item -->
-                <Grid ColumnSpacing="10" RowSpacing="10" HorizontalOptions="FillAndExpand" Margin="0,10,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="60" />
-                        <ColumnDefinition Width="40" />
-                    </Grid.ColumnDefinitions>
-                    <Image Source="meat.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
-                    <Label x:Name="MeatQuantityLabel" Text="5 lb" VerticalOptions="Center" HorizontalOptions="Start" FontSize="20" Grid.Column="1"/>
-                    <Button Text="-" BackgroundColor="#800080" TextColor="White" WidthRequest="70" HeightRequest="70" Clicked="DecreaseMeatQuantity" Grid.Column="2"/>
-                    <Button Text="+" BackgroundColor="#800080" TextColor="White" WidthRequest="70" HeightRequest="70" Clicked="IncreaseMeatQuantity" Grid.Column="3"/>
-                </Grid>
+                        <Image Source="milk.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
+                        <Label x:Name="MilkQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseMilkQuantity" Grid.Column="2" />
+                        <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseMilkQuantity" Grid.Column="3" />
+                    </Grid>
 
-                <!-- Additional Items (Vegetables, Fruits) can be added similarly -->
-            </StackLayout>
+                    <!-- Meat Item with Quantity Label and Buttons -->
+                    <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-            <!-- Right Side: Scanner, Suggestions, and Chatbot -->
-            <StackLayout Grid.Column="1" VerticalOptions="StartAndExpand">
+                        <Image Source="meat.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
+                        <Label x:Name="MeatQuantityLabel" Text="5 lb" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseMeatQuantity" Grid.Column="2" />
+                        <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseMeatQuantity" Grid.Column="3" />
+                    </Grid>
 
-                <!-- Scanner -->
-                <StackLayout HorizontalOptions="Center" VerticalOptions="StartAndExpand" Margin="0,10">
-                    <Image Source="camera_icon.png" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+                    <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="onions.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
+                        <Label x:Name="OnionsQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseOnionsQuantity" Grid.Column="2" />
+                        <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseOnionsQuantity" Grid.Column="3" />
+                    </Grid>
+
+                    <Grid ColumnSpacing="10" RowSpacing="10" Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="tomato.png" WidthRequest="100" HeightRequest="100" Grid.Column="0" />
+                        <Label x:Name="tomatoQuantityLabel" Text="2 Litre" FontSize="Medium" VerticalOptions="Center" Grid.Column="1" />
+                        <Button Text="-" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="DecreaseTomatoQuantity" Grid.Column="2" />
+                        <Button Text="+" FontSize="Medium" BackgroundColor="#D8BFD8" TextColor="Black" WidthRequest="60" HeightRequest="60" Clicked="IncreaseTomatoQuantity" Grid.Column="3" />
+                    </Grid>
+
+                    <!-- Additional items can be added here as needed -->
                 </StackLayout>
 
-                <!-- Suggested Grocery List -->
-                <Frame BorderColor="Black" CornerRadius="10" Padding="10" Margin="0,20,0,10" HasShadow="False">
-                    <Label x:Name="SuggestionsLabel" Text="Suggested Grocery List:\n1) You’re running out of Milk!\n2) With this week's budget, you could get this..."
-                           FontSize="16" TextColor="Black"/>
-                </Frame>
 
-                <!-- Chatbot Section -->
-                <Frame BorderColor="Black" CornerRadius="10" Padding="10" Margin="0,10,0,0" HasShadow="False">
-                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
-                        <Image Source="chef_sarah.png" WidthRequest="40" HeightRequest="40" VerticalOptions="Center"/>
-                        <Button Text="Chat with Sarah" BackgroundColor="#800080" TextColor="White" WidthRequest="200" Clicked="OnChatWithSarahClicked"/>
+                <!-- Right Section for Camera and ChatBot -->
+                <StackLayout Grid.Column="1" Spacing="15" Padding="10">
+
+                    <!-- Camera Box -->
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Image Source="camera_icon.png" WidthRequest="350" HeightRequest="180" Margin="0" />
                     </StackLayout>
-                </Frame>
-            </StackLayout>
-        </Grid>
-    </StackLayout>
+
+                    <!-- Suggested Grocery List -->
+                    <Frame BorderColor="Gray" CornerRadius="20" Padding="10" WidthRequest="630" HeightRequest="150">
+                        <StackLayout>
+                            <!-- Title for the suggestion box -->
+                            <Label Text="Suggested Grocery List:" FontAttributes="Bold" FontSize="18" TextColor="#333333" />
+
+                            <!-- List items as individual labels -->
+                            <Label Text="1) You’re running out of Milk!" FontSize="18" TextColor="#333333" />
+                            <Label Text="2) With this week's budget, you could get this..." FontSize="18" TextColor="#333333" />
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Chat with Sarah -->
+                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,10,0,0" WidthRequest="300">
+                        <StackLayout Spacing="10">
+                            <Label Text="Chatbot- Talk to Chef Sarah!" FontSize="Medium" FontAttributes="Bold" TextColor="Gray" />
+                            <Label Text="Ask questions about the pantry, add reminders about expiry dates, or schedule a shopping trip!" FontSize="Small" TextColor="Gray" />
+
+                            <!-- Chat Display Area -->
+                            <CollectionView x:Name="ChatMessages" HeightRequest="200" WidthRequest="300">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding}" FontSize="Medium" TextColor="Black" />
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                            <!-- Input Area for Chat -->
+                            <StackLayout Orientation="Horizontal">
+                                <Entry x:Name="UserMessageEntry" Placeholder="Type your message..." WidthRequest="240" />
+                                <Button Text="Send" Clicked="OnSendMessageClicked" />
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

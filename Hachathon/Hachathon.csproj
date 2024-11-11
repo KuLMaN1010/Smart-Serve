@@ -67,14 +67,17 @@
 	  <None Remove="Resources\Images\meat.png" />
 	  <None Remove="Resources\Images\milk.png" />
 	  <None Remove="Resources\Images\nutrition_icon.png" />
+	  <None Remove="Resources\Images\Onions.png" />
 	  <None Remove="Resources\Images\pantry_icon.png" />
 	  <None Remove="Resources\Images\recipe_icon.png" />
 	  <None Remove="Resources\Images\schedule_icon.png" />
+	  <None Remove="Resources\Images\tomato.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.0-rc.1.24431.7" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
 	</ItemGroup>
 
