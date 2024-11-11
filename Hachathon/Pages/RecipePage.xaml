@@ -18,24 +18,34 @@
 
                 <!-- Left Side: Title and Entry -->
                 <StackLayout Grid.Column="0">
-                    <Frame BorderColor="Gray" CornerRadius="20" Padding="10" WidthRequest="300" HorizontalOptions="Start" Margin="12">
+                    <Frame BorderColor="Black" CornerRadius="20" Padding="10" WidthRequest="300" HorizontalOptions="Start" Margin="12">
                         <Label Text="Let us serve you a recipe!" FontFamily="Consolas" FontSize="14" />
                     </Frame>
+                    <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="780" HorizontalOptions="Start" Margin="12" >
 
-                    <Entry x:Name="IngredientsEntry" Placeholder="Enter the ingredients you have, separated by commas." Margin="12"
+                        <Entry x:Name="IngredientsEntry" Placeholder="Enter the ingredients you have, separated by commas." 
                            FontFamily="Consolas" WidthRequest="780" HorizontalOptions="Start" />
+                    </Frame>
+
                 </StackLayout>
 
                 <!-- Right Side: Pantry Toggle and Generate Button, aligned with title and entry -->
                 <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Spacing="15">
                     <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
-                        <Label Text="Use Pantry" FontFamily="Consolas" FontSize="20" VerticalOptions="Center" />
-                        <Switch x:Name="PantrySwitch" />
-                    </StackLayout>
+                        <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="200" VerticalOptions="Center" Margin="12">
 
-                    <Button x:Name="GenerateButton" Text="Generate" FontFamily="Consolas" FontSize="20" 
-                            BackgroundColor="MediumPurple" WidthRequest="150" HeightRequest="90"
-                            Clicked="OnGenerateButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+                            <!-- Wrap Label and Switch in a horizontal StackLayout -->
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Use Pantry" FontFamily="Consolas" FontSize="20" VerticalOptions="Center" />
+                                <Switch x:Name="PantrySwitch" VerticalOptions="Center" />
+                            </StackLayout>
+
+                        </Frame>
+                    </StackLayout>
+                    <Button x:Name="GenerateButton" Text="Generate" TextColor="Black" FontFamily="Consolas" FontSize="20" 
+                        BackgroundColor="MediumPurple" WidthRequest="150" HeightRequest="90"
+                        Clicked="OnGenerateButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+
                 </StackLayout>
             </Grid>
 
@@ -49,13 +59,21 @@
                 <!-- Ingredients Box -->
                 <StackLayout Grid.Column="0">
                     <Label Text="Ingredients:" FontFamily="Consolas" FontSize="18" />
-                    <Editor x:Name="IngredientsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                    <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="720" HeightRequest="300">
+
+                        <Editor x:Name="IngredientsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                    </Frame>
+
                 </StackLayout>
 
                 <!-- Instructions Box -->
                 <StackLayout Grid.Column="1">
                     <Label Text="Instructions:" FontFamily="Consolas" FontSize="18" />
-                    <Editor x:Name="InstructionsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                    <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="720" HeightRequest="300">
+
+                        <Editor x:Name="InstructionsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                    </Frame>
+
                 </StackLayout>
             </Grid>
 

@@ -19,13 +19,25 @@ namespace Hachathon.Pages
 
         private async void OnGenerateButtonClicked(object sender, EventArgs e)
         {
+            // Retrieve user-entered ingredients
             string ingredientsInput = IngredientsEntry.Text;
             bool usePantry = PantrySwitch.IsToggled;
 
-            // Call OpenAI API to generate a recipe
+            // If "Use Pantry" is toggled, append pantry ingredients to user input
+            if (usePantry)
+            {
+                string pantryIngredients = "2 litres of milk, 5 lbs of beef, 1 onion, 2 tomatoes";
+                ingredientsInput = string.IsNullOrWhiteSpace(ingredientsInput)
+                    ? pantryIngredients
+                    : ingredientsInput + ", " + pantryIngredients;
+            }
+
+            // Call OpenAI API to generate a recipe using the combined ingredients and pantry toggle
             string recipeResponse = await GenerateRecipeFromOpenAI(ingredientsInput, usePantry);
             DisplayRecipe(recipeResponse);
         }
+
+
 
         private async Task<string> GenerateRecipeFromOpenAI(string ingredients, bool usePantry)
         {

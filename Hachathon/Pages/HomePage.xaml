@@ -28,34 +28,50 @@
 
             <!-- Schedule Button -->
             <VerticalStackLayout Grid.Column="0" HorizontalOptions="Center">
-                <Image Source="schedule_icon.png" WidthRequest="350" HeightRequest="350"/>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnScheduleTapped"/>
-                </Image.GestureRecognizers>
+                <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="350" HeightRequest="350" >
+
+                    <Image Source="schedule_icon.png" WidthRequest="330" HeightRequest="330"/>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnScheduleTapped"/>
+                    </Image.GestureRecognizers>
+                </Frame>
+
             </VerticalStackLayout>
 
             <!-- Recipe Generator Button -->
             <VerticalStackLayout Grid.Column="1" HorizontalOptions="Center">
-                <Image Source="recipe_icon.png" WidthRequest="350" HeightRequest="350"/>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnRecipeGeneratorTapped"/>
-                </Image.GestureRecognizers>
+                <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="350" HeightRequest="350" >
+
+                    <Image Source="recipe_icon.png" WidthRequest="330" HeightRequest="330"/>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnRecipeGeneratorTapped"/>
+                    </Image.GestureRecognizers>
+                </Frame>
+
             </VerticalStackLayout>
 
             <!-- Pantry Button -->
             <VerticalStackLayout Grid.Column="2" HorizontalOptions="Center">
-                <Image Source="pantry_icon.png" WidthRequest="350" HeightRequest="350"/>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnPantryTapped"/>
-                </Image.GestureRecognizers>
+                <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="350" HeightRequest="350" >
+
+                    <Image Source="pantry_icon.png" WidthRequest="330" HeightRequest="330"/>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnPantryTapped"/>
+                    </Image.GestureRecognizers>
+                </Frame>
+
             </VerticalStackLayout>
 
             <!-- Nutritional Intake Button -->
             <VerticalStackLayout Grid.Column="3" HorizontalOptions="Center">
-                <Image Source="nutrition_icon.png" WidthRequest="350" HeightRequest="350"/>
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="OnNutritionalIntakeTapped"/>
-                </Image.GestureRecognizers>
+                <Frame BorderColor="Black" CornerRadius="30" Padding="10" WidthRequest="350" HeightRequest="350" >
+
+                    <Image Source="nutrition_icon.png" WidthRequest="330" HeightRequest="330"/>
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="OnNutritionalIntakeTapped"/>
+                    </Image.GestureRecognizers>
+                </Frame>
+
             </VerticalStackLayout>
         </Grid>
     </StackLayout>

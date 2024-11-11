@@ -101,7 +101,7 @@
                     </StackLayout>
 
                     <!-- Suggested Grocery List -->
-                    <Frame BorderColor="Gray" CornerRadius="20" Padding="10" WidthRequest="630" HeightRequest="150">
+                    <Frame BorderColor="Gray" CornerRadius="30" Padding="10" WidthRequest="630" HeightRequest="150">
                         <StackLayout>
                             <!-- Title for the suggestion box -->
                             <Label Text="Suggested Grocery List:" FontAttributes="Bold" FontSize="18" TextColor="Grey" FontFamily="Consolas" />
@@ -113,7 +113,7 @@
                     </Frame>
 
                     <!-- Chat with Sarah -->
-                    <Frame BorderColor="Gray" CornerRadius="10" Padding="10" Margin="0,10,0,0" WidthRequest="630" HeightRequest="250">
+                    <Frame BorderColor="Gray" CornerRadius="30" Padding="10" Margin="0,10,0,0" WidthRequest="630" HeightRequest="250">
                         <Grid>
                             <!-- StackLayout for chat area -->
                             <StackLayout Spacing="5" Padding="5">
