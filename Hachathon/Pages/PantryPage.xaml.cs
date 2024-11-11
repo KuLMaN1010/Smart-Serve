@@ -103,7 +103,7 @@ namespace Hachathon.Pages
                 model = "gpt-3.5-turbo",
                 messages = new[]
                 {
-                new { role = "system", content = "You are Chef Sarah, an assistant for managing the pantry, setting reminders for expiry dates, and helping with grocery shopping." },
+                new { role = "system", content = "You are Chef Sarah, an assistant for managing the pantry, setting reminders for expiry dates, and helping with grocery shopping or for any queries regarding the application." },
                 new { role = "user", content = userMessage }
             },
                 max_tokens = 50,
