@@ -71,6 +71,8 @@
 	  <None Remove="Resources\Images\pantry_icon.png" />
 	  <None Remove="Resources\Images\recipe_icon.png" />
 	  <None Remove="Resources\Images\schedule_icon.png" />
+	  <None Remove="Resources\Images\star_empty.png" />
+	  <None Remove="Resources\Images\star_filled.png" />
 	  <None Remove="Resources\Images\tomato.png" />
 	</ItemGroup>
 

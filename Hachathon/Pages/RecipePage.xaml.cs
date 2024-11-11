@@ -1,120 +1,124 @@
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Maui.Controls;
+using Newtonsoft.Json.Linq;
 
 namespace Hachathon.Pages
 {
     public partial class RecipePage : ContentPage
     {
-        // Use your new API key here
-        private const string apiKey = "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";
-        private const string apiUrl = "https://api.openai.com/v1/chat/completions";
+        private int userRating;
 
         public RecipePage()
         {
             InitializeComponent();
+            SetStarGestureRecognizers(); // Initialize gestures for star rating
         }
 
-        private async void OnGenerateRecipeClicked(object sender, EventArgs e)
+        private async void OnGenerateButtonClicked(object sender, EventArgs e)
         {
-            string ingredients = ingredientsEntry.Text;
+            string ingredientsInput = IngredientsEntry.Text;
+            bool usePantry = PantrySwitch.IsToggled;
 
-            if (string.IsNullOrWhiteSpace(ingredients))
-            {
-                await DisplayAlert("Error", "Please enter some ingredients.", "OK");
-                return;
-            }
-
-            recipeOutput.Text = "Generating recipe...";
-            recipeOutput.IsVisible = true;
-
-            try
-            {
-                string response = await GetRecipeFromAI(ingredients);
-                recipeOutput.Text = response;
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", "Failed to generate recipe. Please try again.", "OK");
-                recipeOutput.Text = string.Empty;
-                Console.WriteLine($"Error: {ex.Message}");
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            }
+            // Call OpenAI API to generate a recipe
+            string recipeResponse = await GenerateRecipeFromOpenAI(ingredientsInput, usePantry);
+            DisplayRecipe(recipeResponse);
         }
 
-        private async Task<string> GetRecipeFromAI(string ingredients)
+        private async Task<string> GenerateRecipeFromOpenAI(string ingredients, bool usePantry)
         {
-            using (var client = new HttpClient())
+            string prompt = $"Generate a recipe using: {ingredients}.";
+            if (usePantry)
+                prompt += " Also include ingredients available in the pantry.";
+
+            var apiKey = "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"; // Secure your API key
+            using var httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+
+            var requestBody = new JObject
             {
-                client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
-
-                var requestBody = new
+                ["model"] = "gpt-3.5-turbo",
+                ["messages"] = new JArray
                 {
-                    model = "gpt-3.5-turbo",
-                    messages = new[]
+                    new JObject
                     {
-                        new { role = "user", content = $"Create a recipe using these ingredients: {ingredients}." }
-                    },
-                    max_tokens = 150,
-                    temperature = 0.7
-                };
-
-                var jsonContent = new StringContent(
-                    JsonSerializer.Serialize(requestBody),
-                    Encoding.UTF8,
-                    "application/json"
-                );
-
-                try
-                {
-                    Console.WriteLine("Sending request to OpenAI API...");
-                    var response = await client.PostAsync(apiUrl, jsonContent);
-
-                    Console.WriteLine($"Status Code: {response.StatusCode}");
-                    string responseContent = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Response Content: {responseContent}");
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        var result = JsonSerializer.Deserialize<OpenAIResponse>(responseContent);
-                        return result?.choices?[0]?.message?.content.Trim() ?? "No recipe found.";
-                    }
-                    else
-                    {
-                        throw new Exception($"OpenAI API Error: StatusCode={response.StatusCode}, Content={responseContent}");
+                        ["role"] = "user",
+                        ["content"] = prompt
                     }
                 }
-                catch (HttpRequestException httpEx)
-                {
-                    Console.WriteLine($"HTTP Request Exception: {httpEx.Message}");
-                    throw new Exception("Network or connectivity issue while communicating with OpenAI API.", httpEx);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"General Exception: {ex.Message}");
-                    throw new Exception("Failed to communicate with OpenAI API.", ex);
-                }
+            };
+
+            var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions",
+                new StringContent(requestBody.ToString(), System.Text.Encoding.UTF8, "application/json"));
+            var responseContent = await response.Content.ReadAsStringAsync();
+
+            var jsonResponse = JObject.Parse(responseContent);
+            return jsonResponse["choices"]?[0]?["message"]?["content"]?.ToString() ?? "No recipe generated.";
+        }
+
+        private void DisplayRecipe(string recipeText)
+        {
+            var parts = recipeText.Split(new[] { "Instructions:" }, StringSplitOptions.None);
+            IngredientsDisplay.Text = parts[0].Replace("Ingredients:", "").Trim();
+            InstructionsDisplay.Text = parts.Length > 1 ? parts[1].Trim() : "Instructions not provided.";
+        }
+
+        private void OnStarClicked(object sender, EventArgs e)
+        {
+            // Determine which star was clicked by checking its position in the stars list
+            var button = sender as ImageButton;
+            int rating = int.Parse(button.ClassId ?? "1"); // Use ClassId or CommandParameter to differentiate stars
+
+            // Update the rating and visual feedback
+            userRating = rating;
+            UpdateStarRatingDisplay();
+        }
+
+        private void UpdateStarRatingDisplay()
+        {
+            var stars = new List<ImageButton> { Star1, Star2, Star3, Star4, Star5 };
+            for (int i = 0; i < stars.Count; i++)
+            {
+                stars[i].Source = i < userRating ? "star_filled.png" : "star_empty.png";
             }
         }
 
-        // Define helper classes for the OpenAI API response
-        public class OpenAIResponse
+        private void OnAddToCalendarClicked(object sender, EventArgs e)
         {
-            public Choice[] choices { get; set; }
+            if (!string.IsNullOrEmpty(IngredientsDisplay.Text) && !string.IsNullOrEmpty(InstructionsDisplay.Text))
+            {
+                CalendarManager.AddRecipeToCalendar("Generated Recipe", IngredientsDisplay.Text, InstructionsDisplay.Text);
+                DisplayAlert("Success", "Recipe added to calendar!", "OK");
+            }
+            else
+            {
+                DisplayAlert("Error", "No recipe to add. Please generate a recipe first.", "OK");
+            }
         }
 
-        public class Choice
+        private void OnRegenerateClicked(object sender, EventArgs e)
         {
-            public Message message { get; set; }
+            OnGenerateButtonClicked(sender, e);
         }
 
-        public class Message
+        private void SetStarGestureRecognizers()
         {
-            public string role { get; set; }
-            public string content { get; set; }
+            // Set TapGestureRecognizers directly for each star ImageButton
+            Star1.ClassId = "1";
+            Star2.ClassId = "2";
+            Star3.ClassId = "3";
+            Star4.ClassId = "4";
+            Star5.ClassId = "5";
+        }
+    }
+
+    public static class CalendarManager
+    {
+        public static void AddRecipeToCalendar(string title, string ingredients, string instructions)
+        {
+            // Placeholder logic for adding a calendar event.
         }
     }
 }

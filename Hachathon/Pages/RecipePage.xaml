@@ -2,55 +2,80 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hachathon.Pages.RecipePage"
-             Title="RecipePage"
-             BackgroundColor="#EDEDED">
+             BackgroundColor="White">
 
-    <StackLayout Padding="40,60,40,20" Spacing="20" VerticalOptions="CenterAndExpand" HorizontalOptions="Center">
+    <ScrollView>
+        <StackLayout Padding="20">
+            <!-- Header Image for the Title Bar -->
+            <Image Source="header3_image.png" HorizontalOptions="Center" />
 
-        <!-- Page Title -->
-        <Label Text="Recipe Generator"
-               FontSize="36"
-               FontAttributes="Bold"
-               TextColor="#444"
-               HorizontalOptions="Center" />
+            <!-- Grid for Title, Entry, Pantry Toggle, and Generate Button -->
+            <Grid ColumnSpacing="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-        <!-- Instructions -->
-        <Label Text="Enter the ingredients you have, separated by commas:"
-               FontSize="16"
-               TextColor="#666"
-               HorizontalOptions="Center" />
+                <!-- Left Side: Title and Entry -->
+                <StackLayout Grid.Column="0">
+                    <Frame BorderColor="Gray" CornerRadius="20" Padding="10" WidthRequest="300" HorizontalOptions="Start" Margin="12">
+                        <Label Text="Let us serve you a recipe!" FontFamily="Consolas" FontSize="14" />
+                    </Frame>
 
-        <!-- Ingredients Entry -->
-        <Frame WidthRequest="300" CornerRadius="10" HasShadow="True" BackgroundColor="White" Padding="10,0" HorizontalOptions="Center">
-            <Entry x:Name="ingredientsEntry"
-                   Placeholder="e.g., onion, egg, salt"
-                   FontSize="18"
-                   TextColor="#333"
-                   PlaceholderColor="#888"
-                   Margin="5,0"
-                   HorizontalOptions="FillAndExpand"/>
-        </Frame>
+                    <Entry x:Name="IngredientsEntry" Placeholder="Enter the ingredients you have, separated by commas." Margin="12"
+                           FontFamily="Consolas" WidthRequest="780" HorizontalOptions="Start" />
+                </StackLayout>
 
-        <!-- Generate Recipe Button -->
-        <Button Text="Generate Recipe"
-                FontSize="18"
-                TextColor="White"
-                BackgroundColor="#4A90E2"
-                CornerRadius="10"
-                HeightRequest="50"
-                WidthRequest="300"
-                Clicked="OnGenerateRecipeClicked"
-                HorizontalOptions="Center" />
+                <!-- Right Side: Pantry Toggle and Generate Button, aligned with title and entry -->
+                <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand" Spacing="15">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Start">
+                        <Label Text="Use Pantry" FontFamily="Consolas" FontSize="20" VerticalOptions="Center" />
+                        <Switch x:Name="PantrySwitch" />
+                    </StackLayout>
 
-        <!-- Recipe Output -->
-        <Label x:Name="recipeOutput"
-               FontSize="16"
-               TextColor="#333"
-               Padding="10"
-               BackgroundColor="White"
-               IsVisible="False"
-               WidthRequest="300"
-               VerticalOptions="StartAndExpand"
-               HorizontalOptions="Center"/>
-    </StackLayout>
+                    <Button x:Name="GenerateButton" Text="Generate" FontFamily="Consolas" FontSize="20" 
+                            BackgroundColor="MediumPurple" WidthRequest="150" HeightRequest="90"
+                            Clicked="OnGenerateButtonClicked" HorizontalOptions="Center" VerticalOptions="Start" />
+                </StackLayout>
+            </Grid>
+
+            <!-- Ingredients and Instructions Display Section -->
+            <Grid ColumnSpacing="20" RowSpacing="10" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Ingredients Box -->
+                <StackLayout Grid.Column="0">
+                    <Label Text="Ingredients:" FontFamily="Consolas" FontSize="18" />
+                    <Editor x:Name="IngredientsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                </StackLayout>
+
+                <!-- Instructions Box -->
+                <StackLayout Grid.Column="1">
+                    <Label Text="Instructions:" FontFamily="Consolas" FontSize="18" />
+                    <Editor x:Name="InstructionsDisplay" IsReadOnly="True" HeightRequest="300" FontFamily="Consolas" />
+                </StackLayout>
+            </Grid>
+
+            <!-- Rating and Action Buttons -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,20,0,0">
+                <Label Text="Rate this recipe:" FontFamily="Consolas" FontSize="14" VerticalOptions="Center" />
+                <StackLayout Orientation="Horizontal" Spacing="5">
+                    <ImageButton x:Name="Star1" Source="star_empty.png" Clicked="OnStarClicked" WidthRequest="30" HeightRequest="30"/>
+                    <ImageButton x:Name="Star2" Source="star_empty.png" Clicked="OnStarClicked" WidthRequest="30" HeightRequest="30"/>
+                    <ImageButton x:Name="Star3" Source="star_empty.png" Clicked="OnStarClicked" WidthRequest="30" HeightRequest="30"/>
+                    <ImageButton x:Name="Star4" Source="star_empty.png" Clicked="OnStarClicked" WidthRequest="30" HeightRequest="30"/>
+                    <ImageButton x:Name="Star5" Source="star_empty.png" Clicked="OnStarClicked" WidthRequest="30" HeightRequest="30"/>
+                </StackLayout>
+            </StackLayout>
+
+            <!-- Add to Calendar and Re-generate Buttons -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,10,0,0">
+                <Button Text="Add to Calendar" FontFamily="Consolas" FontSize="15" Clicked="OnAddToCalendarClicked" BackgroundColor="MediumPurple" Margin="5" />
+                <Button Text="Re-generate" FontFamily="Consolas" FontSize="15" Clicked="OnRegenerateClicked" BackgroundColor="MediumPurple" Margin="5" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
