@@ -13,7 +13,7 @@ namespace Hachathon
         protected override Window CreateWindow(IActivationState? activationState)
         {
             // Set LoginPage as the initial page
-            return new Window(new NavigationPage(new SchedulePage()));
+            return new Window(new NavigationPage(new HomePage()));
         }
     }
 }

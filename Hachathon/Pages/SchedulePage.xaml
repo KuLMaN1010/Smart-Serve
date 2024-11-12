@@ -1,12 +1,84 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Hachathon.Pages.SchedulePage"
-             Title="SchedulePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             BackgroundColor="White">
+
+    <ScrollView>
+        <StackLayout Padding="20">
+
+            <!-- Header Image -->
+            <Image Source="header4_image.png" HorizontalOptions="Center" />
+
+            <!-- Generate Schedule Button -->
+            <Button Text="Generate a Schedule" 
+                    FontSize="Medium" 
+                    BackgroundColor="LightGreen" 
+                    TextColor="Black" 
+                    Margin="0,20,0,10" 
+                    HorizontalOptions="Center"
+                    Clicked="OnGenerateScheduleClicked"/>
+
+            <!-- Days of the Week Row -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Days Labels -->
+                <Label Grid.Column="1" Text="Sunday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="2" Text="Monday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="3" Text="Tuesday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="4" Text="Wednesday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="5" Text="Thursday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="6" Text="Friday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="7" Text="Saturday" FontSize="Medium" HorizontalOptions="Center" />
+
+                <!-- Times Column -->
+                <StackLayout Grid.Column="0">
+                    <!-- Time Labels -->
+                    <Label Text="7am" FontSize="Small" />
+                    <Label Text="8am" FontSize="Small" />
+                    <Label Text="9am" FontSize="Small" />
+                    <Label Text="10am" FontSize="Small" />
+                    <!-- Add labels up to 10pm, as required -->
+                </StackLayout>
+
+                <!-- Weekly Schedule Grid -->
+                <Grid Grid.Row="1" Grid.ColumnSpan="8">
+                    <!-- Set up dynamic rows and columns -->
+                    <Grid.RowDefinitions>
+                        <!-- Define rows for each hour from 7am to 10pm -->
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <!-- Repeat up to 10pm -->
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Placeholder Labels for each time slot -->
+                    <!-- These will be dynamically filled based on OpenAI API response -->
+                </Grid>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
