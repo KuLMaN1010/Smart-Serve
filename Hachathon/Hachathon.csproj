@@ -63,6 +63,7 @@
 	  <None Remove="Resources\Images\camera_icon.png" />
 	  <None Remove="Resources\Images\chef_sarah.png" />
 	  <None Remove="Resources\Images\header2_image.png" />
+	  <None Remove="Resources\Images\header4_image.png" />
 	  <None Remove="Resources\Images\header_image.png" />
 	  <None Remove="Resources\Images\meat.png" />
 	  <None Remove="Resources\Images\milk.png" />

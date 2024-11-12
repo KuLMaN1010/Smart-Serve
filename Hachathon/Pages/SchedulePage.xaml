@@ -12,73 +12,107 @@
             <!-- Generate Schedule Button -->
             <Button Text="Generate a Schedule" 
                     FontSize="Medium" 
-                    BackgroundColor="LightGreen" 
+                    FontFamily="Consolas"
+                    BackgroundColor="LightBlue" 
                     TextColor="Black" 
                     Margin="0,20,0,10" 
                     HorizontalOptions="Center"
                     Clicked="OnGenerateScheduleClicked"/>
 
-            <!-- Days of the Week Row -->
-            <Grid>
+            <!-- Schedule Grid -->
+            <Grid x:Name="ScheduleGrid"
+                  RowSpacing="2" ColumnSpacing="2"
+                  Margin="0,20,0,0"
+                  BackgroundColor="LightSalmon"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+
+                <!-- Define Rows and Columns -->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <!-- Time labels -->
+                    <RowDefinition Height="*"/>
+                    <!-- 7am row -->
+                    <RowDefinition Height="*"/>
+                    <!-- 8am row -->
+                    <RowDefinition Height="*"/>
+                    <!-- 9am row -->
+                    <RowDefinition Height="*"/>
+                    <!-- 10am row -->
+                    <!-- Add rows for each additional time slot up to 10pm -->
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
+                    <!-- Times column -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Sunday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Monday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Tuesday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Wednesday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Thursday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Friday -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Saturday -->
                 </Grid.ColumnDefinitions>
 
                 <!-- Days Labels -->
-                <Label Grid.Column="1" Text="Sunday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="2" Text="Monday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="3" Text="Tuesday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="4" Text="Wednesday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="5" Text="Thursday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="6" Text="Friday" FontSize="Medium" HorizontalOptions="Center" />
-                <Label Grid.Column="7" Text="Saturday" FontSize="Medium" HorizontalOptions="Center" />
+                <Label Grid.Column="1" Text="Sunday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="2" Text="Monday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="3" Text="Tuesday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="4" Text="Wednesday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="5" Text="Thursday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="6" Text="Friday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
+                <Label Grid.Column="7" Text="Saturday" FontSize="Medium" FontFamily="Consolas" HorizontalOptions="Center" BackgroundColor="DarkOrange" TextColor="White"/>
 
-                <!-- Times Column -->
-                <StackLayout Grid.Column="0">
-                    <!-- Time Labels -->
-                    <Label Text="7am" FontSize="Small" />
-                    <Label Text="8am" FontSize="Small" />
-                    <Label Text="9am" FontSize="Small" />
-                    <Label Text="10am" FontSize="Small" />
-                    <!-- Add labels up to 10pm, as required -->
+                <!-- Time Labels -->
+                <StackLayout Grid.Column="0" Grid.Row="1" Margin="0,0,0,10" Padding="5">
+                    <Label Text="7am" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="8am" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="9am" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="10am" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="11am" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="12pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="1pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="2pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="3pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="4pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="5pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="6pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="7pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="8pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="9pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
+                    <Label Text="10pm" FontSize="Small" FontFamily="Consolas" TextColor="Black" />
                 </StackLayout>
 
-                <!-- Weekly Schedule Grid -->
-                <Grid Grid.Row="1" Grid.ColumnSpan="8">
-                    <!-- Set up dynamic rows and columns -->
-                    <Grid.RowDefinitions>
-                        <!-- Define rows for each hour from 7am to 10pm -->
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <!-- Repeat up to 10pm -->
-                    </Grid.RowDefinitions>
+                <!-- Empty cells for each time slot -->
+                <BoxView Grid.Column="1" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="2" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="3" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="4" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="5" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="6" Grid.Row="1" BackgroundColor="PeachPuff"/>
+                <BoxView Grid.Column="7" Grid.Row="1" BackgroundColor="PeachPuff"/>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <!-- Placeholder Labels for each time slot -->
-                    <!-- These will be dynamically filled based on OpenAI API response -->
-                </Grid>
             </Grid>
+
         </StackLayout>
     </ScrollView>
 </ContentPage>
