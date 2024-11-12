@@ -9,7 +9,7 @@
         <Image Source="header_image.png" HorizontalOptions="Center" />
 
         <!-- Main Title -->
-        <Label Text="Generate a healthy lifestyle..."
+        <Label Text="Generating an efficient lifestyle..."
                FontSize="24"
                FontFamily="Consolas"
                FontAttributes="Bold"
