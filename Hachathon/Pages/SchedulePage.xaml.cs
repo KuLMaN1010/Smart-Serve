@@ -76,8 +76,6 @@ namespace Hachathon.Pages
         // Method to populate the meal plan when the button is clicked
         private async void OnGenerateScheduleClicked(object sender, EventArgs e)
         {
-            // Show a loading message
-            await DisplayAlert("Generating", "Please wait while your meal schedule is being generated...", "OK");
 
             // Wait for 3 seconds to simulate AI processing
             await Task.Delay(3000);
